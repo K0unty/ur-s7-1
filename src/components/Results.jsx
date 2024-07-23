@@ -1,9 +1,14 @@
-import { calculateInvestmentResults, formatter } from '../util/investment.js';
-
+import { calculateInvestmentResults, formatter } from "../util/investment.js";
 
 export default function Results({ input }) {
   const results = [];
   calculateInvestmentResults(input, results);
+
+  // If Check to ensure program exits when duration is < 0
+  if (results.length === 0) {
+    return <p className="center">😡 InvalidBastard 😡</p>;
+  }
+
   const initialInvestment =
     results[0].valueEndOfYear -
     results[0].interest -
